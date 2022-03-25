@@ -39,13 +39,13 @@ VALUES
 CREATE TABLE `user_details` (
   id int auto_increment primary key,
   user_id int NOT NULL,
-  citizenship_country_id int NOT NULL,
+  country_id int NOT NULL,
   first_name varchar(255) NOT NULL,
   last_name varchar(255) NOT NULL,
   phone_number varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `user_details` (`id`, `user_id`, `citizenship_country_id`, `first_name`, `last_name`, `phone_number`)
+INSERT INTO `user_details` (`id`, `user_id`, `country_id`, `first_name`, `last_name`, `phone_number`)
 VALUES
 	(1,'1','1','Alex', 'Petro', '0043664111111'),
 	(2,'4','1','Dominik', 'Allan', '00436644444444'),

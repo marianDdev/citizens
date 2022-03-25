@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -18,27 +18,21 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
         'email',
-        'password',
+        'active',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    public function userDetails()
+    {
+        return $this->hasOne(UserDetails::class);
+    }
 
     /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
+     * @return bool
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function hasDetails(): bool
+    {
+        return count($this->userDetails()->get()) > 0;
+    }
+
 }
